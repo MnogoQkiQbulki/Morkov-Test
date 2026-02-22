@@ -29,6 +29,7 @@ public class Mainframe implements ActionListener {
 	int standAlready = 0;
 	int dScore = 0;
 	int pScore = 0;
+	int AlreadyDidSoft = 0;
 	
 	JLabel dealerScore = new JLabel("Dealer score: " + dScore);
 	JLabel playerScore = new JLabel("Player score: " + pScore);
@@ -59,6 +60,7 @@ public class Mainframe implements ActionListener {
 	    soft = false;
 	    hitAlready = 0;
 	    standAlready = 0;
+	    AlreadyDidSoft = 0;
 	    dScore = 0;
 	    pScore = 0;
 	    dealerScore.setText("Dealer score: " + dScore);
@@ -137,57 +139,231 @@ public class Mainframe implements ActionListener {
 				int cardPicked = card.Pull();
 				String mapToImage = card.Deck.get(cardPicked);
 				
-				if((cardPicked == 13 || cardPicked == 26 || cardPicked == 39 || cardPicked == 52) && pScore > 10) { pScore++; }
-				else if ((cardPicked == 13 || cardPicked == 26 || cardPicked == 39 || cardPicked == 52) && pScore == 10) { won = true; pScore += 11; }
-				else if ((cardPicked == 13 || cardPicked == 26 || cardPicked == 39 || cardPicked == 52) && pScore < 10) { soft = true; pScore += 11; }
+				if((cardPicked == 13 || cardPicked == 26 || cardPicked == 39 || cardPicked == 52) && pScore > 10) 
+				{ 
+					pScore++;
+				}
+				else if ((cardPicked == 13 || cardPicked == 26 || cardPicked == 39 || cardPicked == 52) && pScore == 10) 
+				{ 
+					won = true; 
+					pScore += 11; 
+				}
+				else if ((cardPicked == 13 || cardPicked == 26 || cardPicked == 39 || cardPicked == 52) && pScore < 10) 
+				{ 
+					soft = true; AlreadyDidSoft++;
+					pScore += 11; 
+				}
 				
-				if((cardPicked == 1 || cardPicked == 14 || cardPicked == 27 || cardPicked == 40) && pScore > 19) { lost = true; pScore += 2; }
-				else if ((cardPicked == 1 || cardPicked == 14 || cardPicked == 27 || cardPicked == 40) && pScore == 19) { won = true; pScore += 2; }
-				else if ((cardPicked == 1 || cardPicked == 14 || cardPicked == 27 || cardPicked == 40) && pScore < 19) { pScore += 2; }
+				if((cardPicked == 1 || cardPicked == 14 || cardPicked == 27 || cardPicked == 40) && pScore > 19)
+				{
+				    lost = true;
+				    if (soft == true && AlreadyDidSoft < 2) {
+				    	lost = false;
+				    	pScore -= 10;
+				    	soft = false;
+				    }
+				    pScore += 2;
+				}
+				else if ((cardPicked == 1 || cardPicked == 14 || cardPicked == 27 || cardPicked == 40) && pScore == 19)
+				{
+				    won = true;
+				    pScore += 2;
+				}
+				else if ((cardPicked == 1 || cardPicked == 14 || cardPicked == 27 || cardPicked == 40) && pScore < 19)
+				{
+				    pScore += 2;
+				}
+
 				
-				if((cardPicked == 2 || cardPicked == 15 || cardPicked == 28 || cardPicked == 41) && pScore > 18) { lost = true; pScore += 3; }
-				else if ((cardPicked == 2 || cardPicked == 15 || cardPicked == 28 || cardPicked == 41) && pScore == 18) { won = true; pScore += 3; }
-				else if ((cardPicked == 2 || cardPicked == 15 || cardPicked == 28 || cardPicked == 41) && pScore < 18) { pScore += 3; }
+				if((cardPicked == 2 || cardPicked == 15 || cardPicked == 28 || cardPicked == 41) && pScore > 18)
+				{
+				    lost = true;
+				    if (soft == true && AlreadyDidSoft < 2) {
+				    	lost = false;
+				    	pScore -= 10;
+				    	soft = false;
+				    }
+				    pScore += 3;
+				}
+				else if ((cardPicked == 2 || cardPicked == 15 || cardPicked == 28 || cardPicked == 41) && pScore == 18)
+				{
+				    won = true;
+				    pScore += 3;
+				}
+				else if ((cardPicked == 2 || cardPicked == 15 || cardPicked == 28 || cardPicked == 41) && pScore < 18)
+				{
+				    pScore += 3;
+				}
+
 				
-				if((cardPicked == 3 || cardPicked == 16 || cardPicked == 29 || cardPicked == 42) && pScore > 17) { lost = true; pScore += 4; }
-				else if ((cardPicked == 3 || cardPicked == 16 || cardPicked == 29 || cardPicked == 42) && pScore == 17) { won = true; pScore += 4; }
-				else if ((cardPicked == 3 || cardPicked == 16 || cardPicked == 29 || cardPicked == 42) && pScore < 17) { pScore += 4; }
+				if((cardPicked == 3 || cardPicked == 16 || cardPicked == 29 || cardPicked == 42) && pScore > 17)
+				{
+				    lost = true;
+				    if (soft == true && AlreadyDidSoft < 2) {
+				    	lost = false;
+				    	pScore -= 10;
+				    	soft = false;
+				    }
+				    pScore += 4;
+				}
+				else if ((cardPicked == 3 || cardPicked == 16 || cardPicked == 29 || cardPicked == 42) && pScore == 17)
+				{
+				    won = true;
+				    pScore += 4;
+				}
+				else if ((cardPicked == 3 || cardPicked == 16 || cardPicked == 29 || cardPicked == 42) && pScore < 17)
+				{
+				    pScore += 4;
+				}
+
 				
-				if((cardPicked == 4 || cardPicked == 17 || cardPicked == 30 || cardPicked == 43) && pScore > 16) { lost = true; pScore += 5; }
-				else if ((cardPicked == 4 || cardPicked == 17 || cardPicked == 30 || cardPicked == 43) && pScore == 16) { won = true; pScore += 5; }
-				else if ((cardPicked == 4 || cardPicked == 17 || cardPicked == 30 || cardPicked == 43) && pScore < 16) { pScore += 5; }
+				if((cardPicked == 4 || cardPicked == 17 || cardPicked == 30 || cardPicked == 43) && pScore > 16)
+				{
+				    lost = true;
+				    if (soft == true && AlreadyDidSoft < 2) {
+				    	lost = false;
+				    	pScore -= 10;
+				    	soft = false;
+				    }
+				    pScore += 5;
+				}
+				else if ((cardPicked == 4 || cardPicked == 17 || cardPicked == 30 || cardPicked == 43) && pScore == 16)
+				{
+				    won = true;
+				    pScore += 5;
+				}
+				else if ((cardPicked == 4 || cardPicked == 17 || cardPicked == 30 || cardPicked == 43) && pScore < 16)
+				{
+				    pScore += 5;
+				}
+
 				
-				if((cardPicked == 5 || cardPicked == 18 || cardPicked == 31 || cardPicked == 44) && pScore > 15) { lost = true; pScore += 6; }
-				else if ((cardPicked == 5 || cardPicked == 18 || cardPicked == 31 || cardPicked == 44) && pScore == 15) { won = true; pScore += 6; }
-				else if ((cardPicked == 5 || cardPicked == 18 || cardPicked == 31 || cardPicked == 44) && pScore < 15) { pScore += 6; }
+				if((cardPicked == 5 || cardPicked == 18 || cardPicked == 31 || cardPicked == 44) && pScore > 15)
+				{
+				    lost = true;
+				    if (soft == true && AlreadyDidSoft < 2) {
+				    	lost = false;
+				    	pScore -= 10;
+				    	soft = false;
+				    }
+				    pScore += 6;
+				}
+				else if ((cardPicked == 5 || cardPicked == 18 || cardPicked == 31 || cardPicked == 44) && pScore == 15)
+				{
+				    won = true;
+				    pScore += 6;
+				}
+				else if ((cardPicked == 5 || cardPicked == 18 || cardPicked == 31 || cardPicked == 44) && pScore < 15)
+				{
+				    pScore += 6;
+				}
+
+				if((cardPicked == 6 || cardPicked == 19 || cardPicked == 32 || cardPicked == 45) && pScore > 14)
+				{
+				    lost = true;
+				    if (soft == true && AlreadyDidSoft < 2) {
+				    	lost = false;
+				    	pScore -= 10;
+				    	soft = false;
+				    }
+				    pScore += 7;
+				}
+				else if ((cardPicked == 6 || cardPicked == 19 || cardPicked == 32 || cardPicked == 45) && pScore == 14)
+				{
+				    won = true;
+				    pScore += 7;
+				}
+				else if ((cardPicked == 6 || cardPicked == 19 || cardPicked == 32 || cardPicked == 45) && pScore < 14)
+				{
+				    pScore += 7;
+				}
+
 				
-				if((cardPicked == 6 || cardPicked == 19 || cardPicked == 32 || cardPicked == 45) && pScore > 14) { lost = true; pScore += 7; }
-				else if ((cardPicked == 6 || cardPicked == 19 || cardPicked == 32 || cardPicked == 45) && pScore == 14) { won = true; pScore += 7; }
-				else if ((cardPicked == 6 || cardPicked == 19 || cardPicked == 32 || cardPicked == 45) && pScore < 14) { pScore += 7; }
+				if((cardPicked == 7 || cardPicked == 20 || cardPicked == 33 || cardPicked == 46) && pScore > 13)
+				{
+				    lost = true;
+				    if (soft == true && AlreadyDidSoft < 2) {
+				    	lost = false;
+				    	pScore -= 10;
+				    	soft = false;
+				    }
+				    pScore += 8;
+				}
+				else if ((cardPicked == 7 || cardPicked == 20 || cardPicked == 33 || cardPicked == 46) && pScore == 13)
+				{
+				    won = true;
+				    pScore += 8;
+				}
+				else if ((cardPicked == 7 || cardPicked == 20 || cardPicked == 33 || cardPicked == 46) && pScore < 13)
+				{
+				    pScore += 8;
+				}
+
 				
-				if((cardPicked == 7 || cardPicked == 20 || cardPicked == 33 || cardPicked == 46) && pScore > 13) { lost = true; pScore += 8; }
-				else if ((cardPicked == 7 || cardPicked == 20 || cardPicked == 33 || cardPicked == 46) && pScore == 13) { won = true; pScore += 8; }
-				else if ((cardPicked == 7 || cardPicked == 20 || cardPicked == 33 || cardPicked == 46) && pScore < 13) { pScore += 8; }
-				
-				if((cardPicked == 8 || cardPicked == 21 || cardPicked == 34 || cardPicked == 47) && pScore > 12) { lost = true; pScore += 9; }
-				else if ((cardPicked == 8 || cardPicked == 21 || cardPicked == 34 || cardPicked == 47) && pScore == 12) { won = true; pScore += 9; }
-				else if ((cardPicked == 8 || cardPicked == 21 || cardPicked == 34 || cardPicked == 47) && pScore < 12) { pScore += 9; }
+				if((cardPicked == 8 || cardPicked == 21 || cardPicked == 34 || cardPicked == 47) && pScore > 12)
+				{
+				    lost = true;
+				    if (soft == true && AlreadyDidSoft < 2) {
+				    	lost = false;
+				    	pScore -= 10;
+				    	soft = false;
+				    }
+				    pScore += 9;
+				}
+				else if ((cardPicked == 8 || cardPicked == 21 || cardPicked == 34 || cardPicked == 47) && pScore == 12)
+				{
+				    won = true;
+				    pScore += 9;
+				}
+				else if ((cardPicked == 8 || cardPicked == 21 || cardPicked == 34 || cardPicked == 47) && pScore < 12)
+				{
+				    pScore += 9;
+				}
+
 				
 				if(((cardPicked >= 9 && cardPicked <= 12) || (cardPicked >= 22 && cardPicked <= 25) ||
-				    (cardPicked >= 35 && cardPicked <= 38) || (cardPicked >= 48 && cardPicked <= 51)) && pScore > 11) { lost = true; pScore += 10; }
+				    (cardPicked >= 35 && cardPicked <= 38) || (cardPicked >= 48 && cardPicked <= 51)) && pScore > 11)
+				{
+				    lost = true;
+				    if (soft == true && AlreadyDidSoft < 2) {
+				    	lost = false;
+				    	pScore -= 10;
+				    	soft = false;
+				    }
+				    pScore += 10;
+				}
 				else if (((cardPicked >= 9 && cardPicked <= 12) || (cardPicked >= 22 && cardPicked <= 25) ||
-				    (cardPicked >= 35 && cardPicked <= 38) || (cardPicked >= 48 && cardPicked <= 51)) && pScore == 11) { won = true; pScore += 10; }
+				    (cardPicked >= 35 && cardPicked <= 38) || (cardPicked >= 48 && cardPicked <= 51)) && pScore == 11)
+				{
+				    won = true;
+				    pScore += 10;
+				}
 				else if (((cardPicked >= 9 && cardPicked <= 12) || (cardPicked >= 22 && cardPicked <= 25) ||
-				    (cardPicked >= 35 && cardPicked <= 38) || (cardPicked >= 48 && cardPicked <= 51)) && pScore < 11) { pScore += 10; }
+				    (cardPicked >= 35 && cardPicked <= 38) || (cardPicked >= 48 && cardPicked <= 51)) && pScore < 11)
+				{
+				    pScore += 10;
+				}
 				
 				playerScore.setText("Player score is: " + pScore);
 				
-				if(lost == true) {
+				if (soft == true && pScore != 21) {
+					playerScore.setText("Player score is: " + pScore + " (Soft)");
+				}
+				
+				if(lost == true && AlreadyDidSoft < 2) {
 					announce.setEnabled(true);
-					announce.setText("LOSS");
+					announce.setText("LOST");
 					hit.setEnabled(false);
 					stand.setEnabled(false);
 				}
+				
+				if(won == true) {
+					announce.setEnabled(true);
+					announce.setText("WON");
+					hit.setEnabled(false);
+					stand.setEnabled(false);
+				}
+				
 				
 				if (hitAlready == 0) 
 				{ 
