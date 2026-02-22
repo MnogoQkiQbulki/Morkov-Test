@@ -9,6 +9,7 @@ public class CardImage{
 	
 	Map<String,ImageIcon> images = new HashMap<>();
 	public CardImage() {
+		
 		images.put("TwoC", Scales(new ImageIcon("2C.png").getImage()));
 		images.put("ThreeC", Scales(new ImageIcon("3C.png").getImage()));
 		images.put("FourC", Scales(new ImageIcon("4C.png").getImage()));
@@ -22,6 +23,7 @@ public class CardImage{
 		images.put("QC", Scales(new ImageIcon("QC.png").getImage()));
 		images.put("KC", Scales(new ImageIcon("KC.png").getImage()));
 		images.put("AC", Scales(new ImageIcon("AC.png").getImage()));
+	
 		images.put("TwoD", Scales(new ImageIcon("2D.png").getImage()));
 		images.put("ThreeD", Scales(new ImageIcon("3D.png").getImage()));
 		images.put("FourD", Scales(new ImageIcon("4D.png").getImage()));
@@ -35,6 +37,7 @@ public class CardImage{
 		images.put("QD", Scales(new ImageIcon("QD.png").getImage()));
 		images.put("KD", Scales(new ImageIcon("KD.png").getImage()));
 		images.put("AD", Scales(new ImageIcon("AD.png").getImage()));
+	
 		images.put("TwoH", Scales(new ImageIcon("2H.png").getImage()));
 		images.put("ThreeH", Scales(new ImageIcon("3H.png").getImage()));
 		images.put("FourH", Scales(new ImageIcon("4H.png").getImage()));
@@ -48,6 +51,7 @@ public class CardImage{
 		images.put("QH", Scales(new ImageIcon("QH.png").getImage()));
 		images.put("KH", Scales(new ImageIcon("KH.png").getImage()));
 		images.put("AH", Scales(new ImageIcon("AH.png").getImage()));
+		
 		images.put("TwoS", Scales(new ImageIcon("2S.png").getImage()));
 		images.put("ThreeS", Scales(new ImageIcon("3S.png").getImage()));
 		images.put("FourS", Scales(new ImageIcon("4S.png").getImage()));
@@ -64,7 +68,7 @@ public class CardImage{
 	}
 	
 	public ImageIcon Scales(Image playcard) {
-		Image img = playcard.getScaledInstance(105, 150, Image.SCALE_SMOOTH);
+		Image img = playcard.getScaledInstance(140, 150, Image.SCALE_SMOOTH);
 		ImageIcon scaled = new ImageIcon(img);
 		return scaled;
 	}

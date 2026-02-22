@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.awt.Dimension;
 
 public class Mainframe implements ActionListener {
 
@@ -15,7 +16,7 @@ public class Mainframe implements ActionListener {
 	JPanel dealer = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	JPanel display = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	JPanel player = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	ImageIcon emptyFrame = new ImageIcon("emptyFrame.png");
+	ImageIcon emptyFrame = new ImageIcon("blueemptyframe.png");
 	Image scaledFrame = emptyFrame.getImage().getScaledInstance(140, 150, Image.SCALE_SMOOTH);
 	ImageIcon eFrame = new ImageIcon(scaledFrame);
 	
@@ -48,7 +49,7 @@ public class Mainframe implements ActionListener {
 	CardImage cardimg = new CardImage();
 	
 	public void Redraw () {
-		if(lost == true) {
+		if(lost == true || won == true) {
 			hit.setEnabled(true);
 			stand.setEnabled(true);
 			announce.setText("");
@@ -62,30 +63,61 @@ public class Mainframe implements ActionListener {
 	    pScore = 0;
 	    dealerScore.setText("Dealer score: " + dScore);
 	    playerScore.setText("Player score: " + pScore);
-	    dealer.add(dcard1); dealer.add(dcard2); dealer.add(dcard3); dealer.add(dcard4); dealer.add(dealerScore);
-	    player.add(pcard1); player.add(pcard2); player.add(pcard3); player.add(pcard4); player.add(playerScore);
-	    pcard1.setIcon(eFrame); pcard2.setIcon(eFrame); pcard3.setIcon(eFrame); pcard4.setIcon(eFrame);
-	    dcard1.setIcon(eFrame); dcard2.setIcon(eFrame); dcard3.setIcon(eFrame); dcard4.setIcon(eFrame);
+	      
+	    pcard1.setIcon(eFrame); 
+	    pcard2.setIcon(eFrame); 
+	    pcard3.setIcon(eFrame); 
+	    pcard4.setIcon(eFrame);
+	    
+	    dcard1.setIcon(eFrame); 
+	    dcard2.setIcon(eFrame); 
+	    dcard3.setIcon(eFrame); 
+	    dcard4.setIcon(eFrame);
 	}
 
 	public Mainframe() {
+		
 		Redraw();
-		won = false; lost = false; soft = false; hitAlready = 0; dScore = 0; pScore = 0;
-		dealer.add(dcard1); dealer.add(dcard2); dealer.add(dcard3); dealer.add(dcard4); dealer.add(dealerScore);
-		hit.addActionListener(this); stand.addActionListener(this); reset.addActionListener(this);
-		display.add(hit); display.add(stand); display.add(reset); display.add(announce);
+		
+		playerScore.setPreferredSize(new Dimension(150, 20));
+	    dealerScore.setPreferredSize(new Dimension(150, 20));
+		won = false; 
+		lost = false; 
+		soft = false; 
+		hitAlready = 0; 
+		dScore = 0; 
+		pScore = 0;
+		dealer.add(dcard1); 
+		dealer.add(dcard2); 
+		dealer.add(dcard3); 
+		dealer.add(dcard4); 
+		dealer.add(dealerScore);
+		hit.addActionListener(this); 
+		stand.addActionListener(this); 
+		reset.addActionListener(this);
+		display.add(hit); 
+		display.add(stand); 
+		display.add(reset); 
+		display.add(announce);
 		announce.setEnabled(false);
-		player.add(pcard1); player.add(pcard2); player.add(pcard3); player.add(pcard4); player.add(playerScore);
+		player.add(pcard1); 
+		player.add(pcard2); 
+		player.add(pcard3); 
+		player.add(pcard4); 
+		player.add(playerScore);
 		panel.setBorder(BorderFactory.createEmptyBorder(30,30,30,30));
 		panel.setLayout(new GridLayout(3,0));
-		panel.add(dealer); panel.add(display); panel.add(player);
+		display.setBorder(BorderFactory.createEmptyBorder(50,0,0,60));
+		panel.add(dealer); 
+		panel.add(display); 
+		panel.add(player);
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Morkov blackjack");
-		frame.pack();
+		frame.setSize(900, 600);
 		frame.setVisible(true);
 		frame.setMinimumSize(frame.getSize());
-		frame.setMaximumSize(frame.getSize());
+		
 		ImageIcon icon = new ImageIcon("carrot.png");
 		frame.setIconImage(icon.getImage());
 	}
@@ -157,10 +189,23 @@ public class Mainframe implements ActionListener {
 					stand.setEnabled(false);
 				}
 				
-				if (hitAlready == 0) { pcard1.setIcon(cardimg.images.get(mapToImage)); hitAlready++; }
-				else if (hitAlready == 1) { pcard2.setIcon(cardimg.images.get(mapToImage)); hitAlready++; }
-				else if (hitAlready == 2) { pcard3.setIcon(cardimg.images.get(mapToImage)); hitAlready++; }
-				else if (hitAlready == 3) { pcard4.setIcon(cardimg.images.get(mapToImage)); hitAlready++; }
+				if (hitAlready == 0) 
+				{ 
+					pcard1.setIcon(cardimg.images.get(mapToImage)); hitAlready++;
+				}
+				else if (hitAlready == 1) 
+				{ 
+					pcard2.setIcon(cardimg.images.get(mapToImage)); hitAlready++; 
+				}
+				else if (hitAlready == 2) 
+				{ 
+					pcard3.setIcon(cardimg.images.get(mapToImage)); hitAlready++; 
+				}
+				else if (hitAlready == 3) 
+				{ 
+					pcard4.setIcon(cardimg.images.get(mapToImage)); hitAlready++; 
+				}
+				
 			}
 		} else if (source == stand) {
 			
