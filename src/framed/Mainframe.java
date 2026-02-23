@@ -16,7 +16,7 @@ public class Mainframe implements ActionListener {
 	JPanel dealer = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	JPanel display = new JPanel(new FlowLayout(FlowLayout.CENTER));
 	JPanel player = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	ImageIcon emptyFrame = new ImageIcon("blueemptyframe.png");
+	ImageIcon emptyFrame = new ImageIcon("cards/blueemptyframe.png");
 	Image scaledFrame = emptyFrame.getImage().getScaledInstance(140, 150, Image.SCALE_SMOOTH);
 	ImageIcon eFrame = new ImageIcon(scaledFrame);
 	
@@ -127,13 +127,13 @@ public class Mainframe implements ActionListener {
 		panel.add(player);
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Morkov blackjack");
+		frame.setTitle("Carrot blackjack");
 		frame.setSize(900, 600);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.setMinimumSize(frame.getSize());
 		
-		ImageIcon icon = new ImageIcon("carrot.png");
+		ImageIcon icon = new ImageIcon("cards/carrot.png");
 		frame.setIconImage(icon.getImage());
 		
 		Redraw();
@@ -216,7 +216,7 @@ public class Mainframe implements ActionListener {
 				
 				dealerScore.setText("Dealer score is: " + dScore);
 				
-				if (dScore > pScore && dScore >=17) {
+				if (dScore > pScore) {
 					announce.setEnabled(true);
 					announce.setText("LOST. DEALER WON.");
 					hit.setEnabled(false);
@@ -238,7 +238,7 @@ public class Mainframe implements ActionListener {
 					if (dScore >= 17 && pScore > dScore) {
 						lost = true;
 					}
-					else if (pScore == dScore && dScore >= 17) {
+					else if (dScore == 17 && pScore == 17) {
 						announce.setEnabled(true);
 						announce.setText("PUSH");
 						hit.setEnabled(false);
