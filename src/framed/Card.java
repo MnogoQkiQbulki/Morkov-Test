@@ -20,15 +20,20 @@ public class Card {
 		Deck.put(40, "TwoS"); Deck.put(41, "ThreeS"); Deck.put(42, "FourS"); Deck.put(43, "FiveS");
 		Deck.put(44, "SixS"); Deck.put(45, "SevenS"); Deck.put(46, "EightS"); Deck.put(47, "NineS");
 		Deck.put(48, "TenS"); Deck.put(49, "JS"); Deck.put(50, "QS"); Deck.put(51, "KS"); Deck.put(52, "AS");
+		
+		Refill();
 	}
 	
 	public void Refill () {
 		list.clear();
-		for (int i = 0; i < 52; i++) { list.add(1); }
+	    for (int i = 1; i <= 52; i++) {
+	        list.add(i);
+	    }
 	}
 	
 	public int Pull() {
-		int rand = ThreadLocalRandom.current().nextInt(1, 53);
-		return rand;
+	    if (list.isEmpty()) Refill();
+	    int idx = ThreadLocalRandom.current().nextInt(0, list.size());
+	    return list.remove(idx);
 	}
 }

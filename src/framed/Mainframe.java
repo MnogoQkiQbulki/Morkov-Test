@@ -94,8 +94,7 @@ public class Mainframe implements ActionListener {
 	    dealerScore.setPreferredSize(new Dimension(150, 20));
 		won = false; 
 		lost = false; 
-		soft = false; 
-		hitAlready = 0; 
+		soft = false; 		 
 		dScore = 0; 
 		pScore = 0;
 		dealer.add(dcard1); 
@@ -136,7 +135,7 @@ public class Mainframe implements ActionListener {
 
 	public static void main(String[] args) {
 		new Mainframe();
-		System.out.println("Hi!");
+		System.out.println("Wow");
 		System.out.println(System.getProperty("user.dir"));
 	}
 
@@ -194,14 +193,37 @@ public class Mainframe implements ActionListener {
 		
 		else if (source == stand) 
 		{
+			hit.setEnabled(false);
 			
+			soft = false;
+			AlreadyDidSoft = 0;
+						
+			if (standAlready <= 3) {
+				
+				int cardPicked = card.Pull();
+				String mapToImage = card.Deck.get(cardPicked);
+				
+				dScore = GameLogic(cardPicked,dScore);
+				
+				dealerScore.setText("Dealer score is: " + dScore);
+				
+				if (standAlready == 0) {
+					dcard2.setIcon(cardimg.images.get(mapToImage)); standAlready++;
+				}
+				else if (standAlready == 1) {
+					dcard3.setIcon(cardimg.images.get(mapToImage)); standAlready++;
+				}
+				else if (standAlready == 2) {
+					dcard4.setIcon(cardimg.images.get(mapToImage)); standAlready++;
+				}
+			}
 		} 
 		else if (source == reset) 
 		{
 			Redraw();
 		}
 	}
-	public int GameLogic(int cardPicked, int currentScore) {
+	private int GameLogic(int cardPicked, int currentScore) {
 	    
 	    if((cardPicked == 13 || cardPicked == 26 || cardPicked == 39 || cardPicked == 52) && currentScore > 10) { currentScore++; }
 	    else if ((cardPicked == 13 || cardPicked == 26 || cardPicked == 39 || cardPicked == 52) && currentScore == 10) { won = true; currentScore += 11; }
