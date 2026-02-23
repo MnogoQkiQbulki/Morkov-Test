@@ -51,9 +51,10 @@ public class Mainframe implements ActionListener {
 	
 	public void Redraw () {
 		 
-			hit.setEnabled(true);
-			stand.setEnabled(true);
-			announce.setText("");
+		hit.setEnabled(true);
+		stand.setEnabled(true);
+		announce.setText("");
+		announce.setEnabled(true);
 		
 		won = false;
 	    lost = false;
@@ -128,6 +129,7 @@ public class Mainframe implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Morkov blackjack");
 		frame.setSize(900, 600);
+		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.setMinimumSize(frame.getSize());
 		
@@ -214,12 +216,14 @@ public class Mainframe implements ActionListener {
 				
 				dealerScore.setText("Dealer score is: " + dScore);
 				
-				if (dScore > pScore) {
+				if (dScore > pScore && dScore >=17) {
 					announce.setEnabled(true);
 					announce.setText("LOST. DEALER WON.");
 					hit.setEnabled(false);
 					stand.setEnabled(false);
 				}
+				
+				
 				
 				if (standAlready == 0) {
 					dcard2.setIcon(cardimg.images.get(mapToImage)); standAlready++;
@@ -230,6 +234,16 @@ public class Mainframe implements ActionListener {
 				else if (standAlready == 2) {
 					dcard4.setIcon(cardimg.images.get(mapToImage)); standAlready++;
 				}
+				
+					if (dScore >= 17 && pScore > dScore) {
+						lost = true;
+					}
+					else if (pScore == dScore && dScore >= 17) {
+						announce.setEnabled(true);
+						announce.setText("PUSH");
+						hit.setEnabled(false);
+						stand.setEnabled(false);
+					}
 				
 					if(won == true) {
 						announce.setEnabled(true);
@@ -244,6 +258,8 @@ public class Mainframe implements ActionListener {
 						hit.setEnabled(false);
 						stand.setEnabled(false);
 					}
+					
+					
 			}
 		} 
 		else if (source == reset) 
