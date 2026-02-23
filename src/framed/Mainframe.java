@@ -1,6 +1,7 @@
 package framed;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -96,6 +97,10 @@ public class Mainframe implements ActionListener {
 		
 		playerScore.setPreferredSize(new Dimension(150, 20));
 	    dealerScore.setPreferredSize(new Dimension(150, 20));
+	    panel.setBackground(new Color(255, 245, 235));
+	    dealer.setBackground(new Color(255, 245, 235));
+	    display.setBackground(new Color(255, 245, 235));
+	    player.setBackground(new Color(255, 245, 235));
 		won = false; 
 		lost = false; 
 		soft = false; 		 
