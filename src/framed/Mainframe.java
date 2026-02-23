@@ -50,11 +50,11 @@ public class Mainframe implements ActionListener {
 	CardImage cardimg = new CardImage();
 	
 	public void Redraw () {
-		if(lost == true || won == true) {
+		 
 			hit.setEnabled(true);
 			stand.setEnabled(true);
 			announce.setText("");
-		}
+		
 		won = false;
 	    lost = false;
 	    soft = false;
@@ -65,7 +65,10 @@ public class Mainframe implements ActionListener {
 	    pScore = 0;
 	    dealerScore.setText("Dealer score: " + dScore);
 	    playerScore.setText("Player score: " + pScore);
-	      
+	    
+	    hit.setEnabled(true);
+	    stand.setEnabled(true);
+	    
 	    pcard2.setIcon(eFrame); 
 	    pcard3.setIcon(eFrame); 
 	    pcard4.setIcon(eFrame);
@@ -88,7 +91,7 @@ public class Mainframe implements ActionListener {
 
 	public Mainframe() {
 		
-		Redraw();
+	
 		
 		playerScore.setPreferredSize(new Dimension(150, 20));
 	    dealerScore.setPreferredSize(new Dimension(150, 20));
@@ -130,6 +133,8 @@ public class Mainframe implements ActionListener {
 		
 		ImageIcon icon = new ImageIcon("carrot.png");
 		frame.setIconImage(icon.getImage());
+		
+		Redraw();
 				
 	}
 
@@ -195,6 +200,8 @@ public class Mainframe implements ActionListener {
 		{
 			hit.setEnabled(false);
 			
+			won = false;
+			lost = false;
 			soft = false;
 			AlreadyDidSoft = 0;
 						
@@ -207,6 +214,13 @@ public class Mainframe implements ActionListener {
 				
 				dealerScore.setText("Dealer score is: " + dScore);
 				
+				if (dScore > pScore) {
+					announce.setEnabled(true);
+					announce.setText("LOST. DEALER WON.");
+					hit.setEnabled(false);
+					stand.setEnabled(false);
+				}
+				
 				if (standAlready == 0) {
 					dcard2.setIcon(cardimg.images.get(mapToImage)); standAlready++;
 				}
@@ -216,6 +230,20 @@ public class Mainframe implements ActionListener {
 				else if (standAlready == 2) {
 					dcard4.setIcon(cardimg.images.get(mapToImage)); standAlready++;
 				}
+				
+					if(won == true) {
+						announce.setEnabled(true);
+						announce.setText("LOST. DEALER WON.");
+						hit.setEnabled(false);
+						stand.setEnabled(false);
+					}	
+					
+					if(lost == true && AlreadyDidSoft < 2) {
+						announce.setEnabled(true);
+						announce.setText("WON. DEALER LOST.");
+						hit.setEnabled(false);
+						stand.setEnabled(false);
+					}
 			}
 		} 
 		else if (source == reset) 
