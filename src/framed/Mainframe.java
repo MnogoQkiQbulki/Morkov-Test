@@ -132,7 +132,7 @@ public class Mainframe implements ActionListener {
 		panel.add(player);
 		frame.add(panel, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Carrot blackjack");
+		frame.setTitle("blackjack for stupid people");
 		frame.setSize(900, 600);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
@@ -236,14 +236,14 @@ public class Mainframe implements ActionListener {
 				else if (standAlready == 1) {
 					dcard3.setIcon(cardimg.images.get(mapToImage)); standAlready++;
 				}
-				else if (standAlready == 2) {
+				else if (standAlready == 2 || standAlready == 3) {
 					dcard4.setIcon(cardimg.images.get(mapToImage)); standAlready++;
 				}
 				
 					if (dScore >= 17 && pScore > dScore) {
 						lost = true;
 					}
-					else if (dScore == 17 && pScore == 17) {
+					else if (dScore == 17 && pScore == 17 || dScore == 18 && pScore == 18 || dScore == 19 && pScore == 19 || dScore == 20 && pScore == 20) {
 						announce.setEnabled(true);
 						announce.setText("PUSH");
 						hit.setEnabled(false);
